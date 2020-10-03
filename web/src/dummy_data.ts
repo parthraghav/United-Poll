@@ -38,18 +38,22 @@ export const dummyCandidateData = [
 ];
 export const dummyQAData = [
   {
+    type: "question",
     name: "What will you do to secure healthcare for american citizens?",
     views: 3500,
     shares: 289,
     answer_count: 5,
   },
   {
+    type: "question",
     name: "Do you think the United States is a racist country?",
     views: 3500,
     shares: 289,
     answer_count: 11,
   },
   {
+    type: "question",
+
     name:
       "Do you think the next administration will need to investigate President Trump or members of his family?",
     views: 3500,
@@ -57,6 +61,8 @@ export const dummyQAData = [
     answer_count: 5,
   },
   {
+    type: "question",
+
     name:
       "What is the most urgent economic challenge facing the United States today?",
     views: 3500,
@@ -64,6 +70,7 @@ export const dummyQAData = [
     answer_count: 5,
   },
   {
+    type: "question",
     name:
       "How will you tackle the issues of police brutality and racism in the criminal justice system?",
     views: 3500,
@@ -71,6 +78,7 @@ export const dummyQAData = [
     answer_count: 5,
   },
   {
+    type: "question",
     name:
       "How will you engage with government scientists, public health experts, and researchers, especially in ongoing efforts to address the pandemic?",
     views: 3500,
@@ -78,12 +86,14 @@ export const dummyQAData = [
     answer_count: 5,
   },
   {
+    type: "question",
     name: "How will you address the recent surge in voter suppression efforts?",
     views: 3500,
     shares: 289,
     answer_count: 5,
   },
   {
+    type: "question",
     name:
       "How will you tackle the influence in Washington of special interest groups such as the fossil fuel lobby?",
     views: 3500,
@@ -91,6 +101,7 @@ export const dummyQAData = [
     answer_count: 5,
   },
   {
+    type: "question",
     name:
       "How will you work with lawmakers to prioritize ethics reforms in Washington?",
     views: 3500,
@@ -98,6 +109,7 @@ export const dummyQAData = [
     answer_count: 5,
   },
   {
+    type: "question",
     name:
       "What will you do to address white nationalism and the resurgence of hate crimes?",
     views: 3500,
@@ -105,6 +117,7 @@ export const dummyQAData = [
     answer_count: 5,
   },
   {
+    type: "question",
     name:
       " If elected, what Senate procedural reforms would you propose? Do you think the Senate should eliminate the filibuster?",
     views: 3500,
@@ -112,9 +125,115 @@ export const dummyQAData = [
     answer_count: 5,
   },
   {
+    type: "question",
     name: "What will you do to secure healthcare for american citizens?",
     views: 3500,
     shares: 289,
     answer_count: 5,
+  },
+];
+
+export const dummyProfileData: any = {
+  "15983": {
+    name: "Gary Johnson",
+    party: "Independent Candidate",
+    imageLink:
+      "https://firebasestorage.googleapis.com/v0/b/unitedpoll-71c75.appspot.com/o/candidate_display_pictures%2F0439a5ea7bc5b4c3796de9bef212565a.png?alt=media",
+    question_count: 310,
+    answer_count: 200,
+    verified_claim_percent: 83,
+  },
+};
+
+export const dummyAnswers = [
+  {
+    type: "answer",
+    thumbnail:
+      "https://firebasestorage.googleapis.com/v0/b/unitedpoll-71c75.appspot.com/o/candidate_display_pictures%2F0439a5ea7bc5b4c3796de9bef212565a.png?alt=media",
+    duration: 23,
+    question_text:
+      "What will you do to secure healthcare for american citizens?",
+    views: 3500,
+    shares: 289,
+  },
+  {
+    type: "answer",
+    thumbnail:
+      "https://firebasestorage.googleapis.com/v0/b/unitedpoll-71c75.appspot.com/o/candidate_display_pictures%2F0439a5ea7bc5b4c3796de9bef212565a.png?alt=media",
+    duration: 23,
+    question_text:
+      "What will you do to secure healthcare for american citizens?",
+    views: 3500,
+    shares: 289,
+  },
+  {
+    type: "answer",
+    thumbnail:
+      "https://firebasestorage.googleapis.com/v0/b/unitedpoll-71c75.appspot.com/o/candidate_display_pictures%2F0439a5ea7bc5b4c3796de9bef212565a.png?alt=media",
+    duration: 23,
+    question_text:
+      "What will you do to secure healthcare for american citizens?",
+    views: 3500,
+    shares: 289,
+  },
+  {
+    type: "answer",
+    thumbnail:
+      "https://firebasestorage.googleapis.com/v0/b/unitedpoll-71c75.appspot.com/o/candidate_display_pictures%2F0439a5ea7bc5b4c3796de9bef212565a.png?alt=media",
+    duration: 23,
+    question_text:
+      "What will you do to secure healthcare for american citizens?",
+    views: 3500,
+    shares: 289,
+  },
+  {
+    type: "answer",
+    thumbnail:
+      "https://firebasestorage.googleapis.com/v0/b/unitedpoll-71c75.appspot.com/o/candidate_display_pictures%2F0439a5ea7bc5b4c3796de9bef212565a.png?alt=media",
+    duration: 23,
+    question_text:
+      "What will you do to secure healthcare for american citizens?",
+    views: 3500,
+    shares: 289,
+  },
+  {
+    type: "answer",
+    thumbnail:
+      "https://firebasestorage.googleapis.com/v0/b/unitedpoll-71c75.appspot.com/o/candidate_display_pictures%2F0439a5ea7bc5b4c3796de9bef212565a.png?alt=media",
+    duration: 23,
+    question_text:
+      "What will you do to secure healthcare for american citizens?",
+    views: 3500,
+    shares: 289,
+  },
+  {
+    type: "answer",
+    thumbnail:
+      "https://firebasestorage.googleapis.com/v0/b/unitedpoll-71c75.appspot.com/o/candidate_display_pictures%2F0439a5ea7bc5b4c3796de9bef212565a.png?alt=media",
+    duration: 23,
+    question_text:
+      "What will you do to secure healthcare for american citizens?",
+    views: 3500,
+    shares: 289,
+  },
+  {
+    type: "answer",
+    thumbnail:
+      "https://firebasestorage.googleapis.com/v0/b/unitedpoll-71c75.appspot.com/o/candidate_display_pictures%2F0439a5ea7bc5b4c3796de9bef212565a.png?alt=media",
+    duration: 23,
+    question_text:
+      "What will you do to secure healthcare for american citizens?",
+    views: 3500,
+    shares: 289,
+  },
+  {
+    type: "answer",
+    thumbnail:
+      "https://firebasestorage.googleapis.com/v0/b/unitedpoll-71c75.appspot.com/o/candidate_display_pictures%2F0439a5ea7bc5b4c3796de9bef212565a.png?alt=media",
+    duration: 23,
+    question_text:
+      "What will you do to secure healthcare for american citizens?",
+    views: 3500,
+    shares: 289,
   },
 ];

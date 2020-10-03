@@ -2,6 +2,7 @@ import React from "react";
 import "./styles.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faQuestion } from "@fortawesome/free-solid-svg-icons";
+
 const QuestionBox = ({ question }: any) => {
   return (
     <div className="question-box">
@@ -26,12 +27,30 @@ const QuestionBox = ({ question }: any) => {
   );
 };
 
-export const QAGrid = ({ data }: any) => {
+const AnswerBox = ({ answer }: any) => {
+  return (
+    <div className="answer-box">
+      <img className="thumbnail" src={answer.thumbnail} />
+      <div className="answer-info-container">
+        <span className="answer-question">{answer.question_text}</span>
+        <span className="answer-metrics">
+          <b>{answer.views}</b> Views <b>{answer.shares}</b> Shares
+        </span>
+      </div>
+    </div>
+  );
+};
+
+export const QAGrid = ({ data, isProfileView }: any) => {
   return (
     <div className="qa-grid-container">
-      <div className="qa-grid">
+      <div className={"qa-grid " + (isProfileView ? "profile-view" : "")}>
         {data.map((content: any, index: number) => {
-          return <QuestionBox question={content} key={index} />;
+          return content.type == "question" ? (
+            <QuestionBox question={content} key={index} />
+          ) : (
+            <AnswerBox answer={content} key={index} />
+          );
         })}
       </div>
     </div>
