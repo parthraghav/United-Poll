@@ -9,7 +9,7 @@ import {
   useRouteMatch,
 } from "react-router-dom";
 import { LocaleSelector } from "./components";
-import { HomeScreen } from "./screens/HomeScreen";
+import { HomeScreen, ProfileScreen, DebateScreen } from "./screens";
 import {
   EmptyLocaleContext,
   LocaleContext,
@@ -42,6 +42,8 @@ function App() {
         <Router>
           <Switch>
             <Route path="/choose" component={LocaleSelector} />
+            <Route path="/debate/:u1?/:u2?/:q" component={DebateScreen} />
+            <Route path="/u/:username" component={ProfileScreen} />
             <LocaleFirstRoute path="/">
               <HomeScreen />
             </LocaleFirstRoute>
