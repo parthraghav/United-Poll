@@ -8,7 +8,7 @@ import {
   useParams,
   useRouteMatch,
 } from "react-router-dom";
-import { LocaleSelector } from "./components/locale_selector/locale_selector";
+import { LocaleSelector } from "./components/locale_selector";
 import { HomeScreen } from "./screens/HomeScreen";
 import {
   EmptyLocaleContext,
