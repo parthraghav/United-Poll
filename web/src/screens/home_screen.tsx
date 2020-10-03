@@ -1,6 +1,6 @@
 import React from "react";
-import { CandidateCarousel, Screen, ScreenHeader } from "../components";
-import { dummyCandidateData } from "../dummy_data";
+import { CandidateCarousel, QAGrid, Screen, ScreenHeader } from "../components";
+import { dummyCandidateData, dummyQAData } from "../dummy_data";
 import "./home_screen.css";
 
 export const HomeScreen = (props: any) => {
@@ -19,6 +19,7 @@ export const HomeScreen = (props: any) => {
         <h1>Top 300 Questions</h1>
         <p>Answered by your candidates. Compare them, annotate them!</p>
       </div>
+      <QAGrid data={dummyQAData} />
     </Screen>
   );
 };
