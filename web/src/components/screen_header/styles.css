@@ -1,0 +1,19 @@
+.screen-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 2em;
+  padding: 2em;
+  box-sizing: border-box;
+  color: var(--primary-text-color);
+}
+
+.screen-header .locale-campaign-name {
+  padding: 1em;
+}
+
+.screen-header .back-btn-label {
+  padding: 0.5em;
+}
