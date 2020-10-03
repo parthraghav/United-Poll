@@ -1,0 +1,11 @@
+.padded-block {
+  padding: 2em;
+}
+.home-screen-info-bar h1 {
+  margin: 0;
+}
+.home-screen-info-bar p {
+  color: var(--secondary-text-color);
+  margin-top: 0.5em;
+  margin-bottom: 0em;
+}
