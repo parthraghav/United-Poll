@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Logo } from "../logo";
 import countryList from "country-list";
 import "./styles.css";
@@ -10,10 +10,11 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link,
-  useParams,
   useRouteMatch,
+  Redirect,
+  useHistory,
 } from "react-router-dom";
+import { LocaleContext } from "../../context/locale";
 
 const ContinueButton = (props: any) => {
   return (
@@ -26,8 +27,14 @@ const ContinueButton = (props: any) => {
 
 const CountrySelector = (props: any) => {
   const [selectedCountry, setSelectedCountry] = useState("US");
+  let history = useHistory();
+  const { setLocale } = useContext(LocaleContext);
   const handleSelectChange = (evt: any) => {
     setSelectedCountry(evt.target.value);
+  };
+  const handleCountrySelection = () => {
+    setLocale({ country: selectedCountry });
+    history.push("campaign");
   };
 
   return (
@@ -51,8 +58,12 @@ const CountrySelector = (props: any) => {
             id="country-selector-select-dropdown"
             onChange={handleSelectChange}
           >
-            {countryList.getData().map((country) => (
-              <option value={country.code} selected={country.code === "US"}>
+            {countryList.getData().map((country, index) => (
+              <option
+                value={country.code}
+                selected={country.code === "US"}
+                key={index}
+              >
                 {country.name}
               </option>
             ))}
@@ -68,7 +79,7 @@ const CountrySelector = (props: any) => {
       </div>
       <div className="selector-dialog-spacer"></div>
       <div className="selector-dialog-row">
-        <ContinueButton />
+        <ContinueButton onClick={handleCountrySelection} />
       </div>
     </div>
   );
@@ -81,10 +92,24 @@ const CampaignSelector = (props: any) => {
       name: "Oklahoma Primaries",
       code: "US-OKP2020",
     },
+    {
+      country: "IND",
+      name: "Indian Main Election",
+      code: "IND-PM2021",
+    },
   ];
-  const [selectedElection, setSelectedElection] = useState(null);
+  const [selectedElection, setSelectedElection] = useState(
+    campaignData[0].code
+  );
+  const { setLocale } = useContext(LocaleContext);
+  const history = useHistory();
   const handleSelectChange = (evt: any) => {
     setSelectedElection(evt.target.value);
+  };
+  const handleCampaignSelection = () => {
+    setLocale({ campaign: selectedElection });
+    console.log(selectedElection);
+    history.push("/");
   };
 
   return (
@@ -108,15 +133,17 @@ const CampaignSelector = (props: any) => {
             id="campaign-selector-select-dropdown"
             onChange={handleSelectChange}
           >
-            {campaignData.map((campaign) => (
-              <option value={campaign.code}>{campaign.name}</option>
+            {campaignData.map((campaign, index) => (
+              <option value={campaign.code} key={index}>
+                {campaign.name}
+              </option>
             ))}
           </select>
         </div>
       </div>
       <div className="selector-dialog-spacer"></div>
       <div className="selector-dialog-row">
-        <ContinueButton />
+        <ContinueButton onClick={handleCampaignSelection} />
       </div>
     </div>
   );
@@ -131,6 +158,7 @@ export const LocaleSelector = () => {
         <Logo width="300" />
       </div>
       <Switch>
+        <Redirect exact from={`${path}`} to={`${path}/country`} />
         <Route path={`${path}/country`} component={CountrySelector} />
         <Route path={`${path}/campaign`} component={CampaignSelector} />
       </Switch>
