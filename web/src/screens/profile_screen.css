@@ -1,0 +1,72 @@
+.profile-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile-photo {
+  width: 10em;
+  height: 10em;
+  position: relative;
+}
+
+.profile-photo img {
+  width: 100%;
+  height: 100%;
+}
+
+.profile-photo,
+.profile-photo img {
+  border-radius: 50%;
+}
+
+.question-btn {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 1em;
+  height: 1em;
+  padding: 0.5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 2em;
+  font-size: 1.5em;
+  font-weight: 600;
+  background-color: var(--primary-foreground-color);
+}
+
+.profile-photo-btn-stack {
+  position: relative;
+}
+.profile-info-container {
+  text-align: center;
+}
+.profile-info-container h1 {
+  margin-bottom: 0;
+}
+.profile-info-container hr {
+  border-color: #3a3a3a;
+  opacity: 0.2;
+  margin: 1em;
+}
+.profile-info-container p {
+  margin-top: 0.5em;
+  margin-bottom: 0em;
+}
+.profile-info-metrics {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  color: var(--secondary-text-color);
+}
+
+.profile-info-metrics > span {
+  display: flex;
+  flex-direction: column;
+  padding-left: 1em;
+  padding-right: 1em;
+}
+.profile-info-metrics > span b {
+  font-size: 1.5em;
+}
