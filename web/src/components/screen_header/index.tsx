@@ -11,13 +11,13 @@ export const ScreenHeader = () => {
   const { locale } = useContext(LocaleContext);
   const history = useHistory();
   const location = useLocation();
-  console.log(location);
   const handleLocaleClick = () => {
     history.push("/choose");
   };
   const handleBackBtnClick = () => {
     history.goBack();
   };
+  const isNotInitialized = !locale.campaign || !locale.country;
   return (
     <div className="screen-header">
       <div>
@@ -28,14 +28,16 @@ export const ScreenHeader = () => {
           </div>
         )}
       </div>
-      <div onClick={handleLocaleClick}>
-        <ReactCountryFlag
-          countryCode={locale.country}
-          className="locale-selector-country-flag"
-          style={{ fontSize: "2em" }}
-        />
-        <span className="locale-campaign-name">{locale.campaign}</span>
-      </div>
+      {!isNotInitialized && (
+        <div onClick={handleLocaleClick}>
+          <ReactCountryFlag
+            countryCode={locale.country}
+            className="locale-selector-country-flag"
+            style={{ fontSize: "2em" }}
+          />
+          <span className="locale-campaign-name">{locale.campaign}</span>
+        </div>
+      )}
     </div>
   );
 };
