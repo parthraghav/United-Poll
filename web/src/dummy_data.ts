@@ -250,6 +250,8 @@ const answer1 = {
   question_text: "What will you do to secure healthcare for american citizens?",
   video: {
     id: "1894928",
+    start: 4,
+    end: 10,
     link: "https://www.youtube.com/watch?v=viP1WzlYPM0",
     timestamp: 2512422134,
     thumbnail:
@@ -309,6 +311,8 @@ const answer2 = {
   question_text: "What will you do to secure healthcare for american citizens?",
   video: {
     id: "1894928",
+    start: 0,
+    end: 10,
     link: "https://www.youtube.com/watch?v=Hh_axUT6jc4",
     timestamp: 2512422134,
     thumbnail:

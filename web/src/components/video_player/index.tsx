@@ -3,6 +3,20 @@ import { ProfilePhoto } from "..";
 import "./styles.css";
 import YouTube from "react-youtube";
 
+const ReviewOverlay = () => {
+  return (
+    <div className="video-player-review-overlay">
+      <div className="video-player-review-prompt">
+        <h1>Was the question answered properly?</h1>
+        <div>
+          <span className="primary-btn">No</span>
+          <span className="primary-btn">Yes</span>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const Annotation = ({ data }: any) => {
   return (
     <div className="video-player-annotation-wrapper">
@@ -23,12 +37,18 @@ export const VideoPlayer = ({ data }: any) => {
   const [playerTime, setPlayerTime] = useState(0);
   const [player, setPlayer] = useState<any>();
   const [ticker, setTicker] = useState<any>();
-  let thumbnailUrl = data.video.thumbnail;
-  let candidateInfo = data.politician;
-  let annotations = data.video.annotations;
+  let candidateInfo, annotations, start, end;
+
+  if (data) {
+    candidateInfo = data.politician;
+    annotations = data.video.annotations;
+    start = data.video.start;
+    end = data.video.end;
+  }
 
   const handlePlayerProgress = (time: number) => {
-    console.log("tick", time);
+    console.log(time);
+    setPlayerTime(time);
   };
 
   const initialiseTicker = (_player: any) => {
@@ -37,7 +57,6 @@ export const VideoPlayer = ({ data }: any) => {
         newTime;
       if (_player && _player.getCurrentTime) {
         newTime = Math.round(_player.getCurrentTime());
-        setPlayerTime(newTime);
         if (newTime != oldTime) handlePlayerProgress(newTime);
       }
     };
@@ -47,6 +66,7 @@ export const VideoPlayer = ({ data }: any) => {
   const handlePlayerReady = (evt: any) => {
     const _player = evt.target;
     setPlayer(_player);
+    _player.playVideo();
     initialiseTicker(_player);
   };
   const handlePlayerStateChange = (evt: any) => {
@@ -108,8 +128,8 @@ export const VideoPlayer = ({ data }: any) => {
                 playerVars: {
                   autoplay: 1,
                   controls: 0,
-                  start: 1,
-                  end: 13,
+                  start: start,
+                  end: end,
                   modestbranding: 1,
                 },
               }}
@@ -124,6 +144,7 @@ export const VideoPlayer = ({ data }: any) => {
               );
             })}
           </div>
+          {playerTime == end && <ReviewOverlay />}
         </div>
       </div>
     </div>

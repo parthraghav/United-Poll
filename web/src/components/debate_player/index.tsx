@@ -6,6 +6,10 @@ import "./styles.css";
 export const DebatePlayer = ({ data }: any) => {
   const questionInfo = data.answer[0].question;
   const recommendations = data.suggested;
+
+  const handleFirstResponseComplete = () => {};
+  const handleSecondResponseComplete = () => {};
+
   return (
     <div className="debate-player-container">
       <div className="debate-player">

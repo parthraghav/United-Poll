@@ -40,3 +40,6 @@
 .debate-player-showcase span {
   color: var(--secondary-text-color);
 }
+.debate-player-recommendations-container h3 {
+  padding-left: 2em;
+}
