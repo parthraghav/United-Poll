@@ -6,6 +6,7 @@ import { QAGrid } from "./qa_grid";
 import { DebatePlayer } from "./debate_player";
 import { VideoPlayer } from "./video_player";
 import { ProfilePhoto } from "./profile_photo";
+import { Dialog } from "./dialog";
 
 export {
   CandidateCarousel,
@@ -16,4 +17,5 @@ export {
   DebatePlayer,
   VideoPlayer,
   ProfilePhoto,
+  Dialog,
 };

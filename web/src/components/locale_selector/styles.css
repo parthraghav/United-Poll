@@ -91,17 +91,6 @@
   flex: 1;
 }
 
-.primary-button {
-  flex: 1;
-  background-color: var(--primary-foreground-color);
-  color: white;
-  display: flex;
-  justify-content: space-between;
-  padding: 1em;
-  border-radius: 1em;
-  cursor: pointer;
-}
-
 .locale-selector-logo-container {
   padding: 2em;
 }

@@ -37,13 +37,14 @@ export const VideoPlayer = ({ data }: any) => {
   const [playerTime, setPlayerTime] = useState(0);
   const [player, setPlayer] = useState<any>();
   const [ticker, setTicker] = useState<any>();
-  let candidateInfo, annotations, start, end;
+  let candidateInfo, annotations, start, end, videoId;
 
   if (data) {
     candidateInfo = data.politician;
     annotations = data.video.annotations;
     start = data.video.start;
     end = data.video.end;
+    videoId = data.video.ytid;
   }
 
   const handlePlayerProgress = (time: number) => {
@@ -119,7 +120,7 @@ export const VideoPlayer = ({ data }: any) => {
         <div className="video-player-embed-area">
           <div className="video-player-embed">
             <YouTube
-              videoId="2g811Eo7K8U"
+              videoId={videoId}
               onReady={handlePlayerReady}
               onStateChange={handlePlayerStateChange}
               opts={{

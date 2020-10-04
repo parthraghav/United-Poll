@@ -15,14 +15,10 @@ import {
   useHistory,
 } from "react-router-dom";
 import { LocaleContext } from "../../context/locale";
+import { PrimaryButton } from "../primary_button";
 
 const ContinueButton = (props: any) => {
-  return (
-    <div {...props} className="primary-button">
-      <span>Continue</span>
-      <FontAwesomeIcon icon={faArrowRight} />
-    </div>
-  );
+  return <PrimaryButton {...props} label="Continue" icon={faArrowRight} />;
 };
 
 const CountrySelector = (props: any) => {
@@ -108,8 +104,7 @@ const CampaignSelector = (props: any) => {
   };
   const handleCampaignSelection = () => {
     setLocale({ campaign: selectedElection });
-    console.log(selectedElection);
-    history.push("/");
+    history.push("/Home");
   };
 
   return (
