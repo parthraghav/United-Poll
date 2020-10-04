@@ -3,7 +3,7 @@ import "./styles.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faQuestion } from "@fortawesome/free-solid-svg-icons";
 
-const QuestionBox = ({ question }: any) => {
+export const QuestionBox = ({ question }: any) => {
   return (
     <div className="question-box">
       <div className="question-bubble-container">

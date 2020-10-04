@@ -1,6 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import { Screen, ScreenHeader } from "../components";
+import { DebatePlayer, Screen, ScreenHeader } from "../components";
+import { dummyDebateData } from "../dummy_data";
 import "./debate_screen.css";
 
 export const DebateScreen = (props: any) => {
@@ -9,9 +10,7 @@ export const DebateScreen = (props: any) => {
   return (
     <Screen>
       <ScreenHeader />
-      <span>{u1}</span>
-      <span>{u2}</span>
-      <span>{q}</span>
+      <DebatePlayer data={dummyDebateData} />
     </Screen>
   );
 };

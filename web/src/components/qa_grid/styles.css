@@ -98,6 +98,7 @@
   font-weight: bold;
   text-align: center;
   font-size: 1em;
+  white-space: normal;
 }
 .question-bubble-container {
   padding-top: 1em;

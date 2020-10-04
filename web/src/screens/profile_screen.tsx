@@ -2,18 +2,9 @@ import { faQuestion } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { useParams } from "react-router-dom";
-import { QAGrid, Screen, ScreenHeader } from "../components";
+import { ProfilePhoto, QAGrid, Screen, ScreenHeader } from "../components";
 import { dummyAnswers, dummyProfileData } from "../dummy_data";
 import "./profile_screen.css";
-
-const ProfilePhoto = ({ src, children }: any) => {
-  return (
-    <div className="profile-photo">
-      <img src={src} />
-      {children}
-    </div>
-  );
-};
 
 const ProfilePhotoButtonStack = ({ src }: any) => {
   return (
