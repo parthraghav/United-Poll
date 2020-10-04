@@ -14,3 +14,47 @@
 .profile-photo img {
   border-radius: 50%;
 }
+
+/* Dialog Component */
+.dialog {
+  max-width: 400px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  color: white;
+  background: var(--secondary-background-color);
+  border-radius: 0.5em;
+  padding: 2em;
+  text-align: center;
+}
+
+.dialog h1 {
+  margin-top: 1em;
+  margin-bottom: 0.1em;
+}
+.dialog p {
+  margin-top: 0.1em;
+  margin-bottom: 2em;
+  max-width: 80%;
+}
+
+.dialog-row,
+.dialog > div {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+/* primary_button Component */
+
+.primary-button {
+  flex: 1;
+  background-color: var(--primary-foreground-color);
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  padding: 1em;
+  margin: 1em;
+  border-radius: 1em;
+  cursor: pointer;
+}
