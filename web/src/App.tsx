@@ -1,20 +1,9 @@
 import React, { useState } from "react";
 import "./theme/app.css";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  useParams,
-  useRouteMatch,
-} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { LocaleSelector } from "./components";
-import { HomeScreen, ProfileScreen, DebateScreen } from "./screens";
-import {
-  EmptyLocaleContext,
-  LocaleContext,
-  LocaleContextObject,
-} from "./context/locale";
+import { HomeScreen, ProfileScreen, DebateScreen, AddScreen } from "./screens";
+import { LocaleContext, LocaleContextObject } from "./context/locale";
 import { LocaleFirstRoute } from "./routes/localeFirstRoute";
 
 function App() {
@@ -44,6 +33,7 @@ function App() {
             <Route path="/choose" component={LocaleSelector} />
             <Route path="/debate/:u1?/:u2?/:q" component={DebateScreen} />
             <Route path="/u/:username" component={ProfileScreen} />
+            <Route path="/add" component={AddScreen} />
             <LocaleFirstRoute path="/">
               <HomeScreen />
             </LocaleFirstRoute>
