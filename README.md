@@ -1,4 +1,4 @@
-<img src="docs/Logo.png" width="80">
+<img src="docs/logo.png" width="80">
 
 ## United Poll
 
