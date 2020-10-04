@@ -1,0 +1,42 @@
+.debate-player-container {
+}
+
+.debate-player {
+}
+
+.debate-player-main {
+  display: flex;
+  padding: 0em 2em;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.debate-player-recommendations {
+  white-space: nowrap;
+  overflow-x: auto;
+}
+
+.recommendation-box-container:first-child {
+  margin-left: 2em;
+}
+.recommendation-box-container:last-child {
+  margin-right: 2em;
+}
+.recommendation-box-container {
+  width: 300px;
+  height: 300px;
+  display: inline-block;
+  margin: 0.5em 0.5em;
+}
+
+.debate-player-showcase {
+  flex: 1;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.debate-player-showcase span {
+  color: var(--secondary-text-color);
+}
