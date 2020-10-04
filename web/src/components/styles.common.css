@@ -1,0 +1,16 @@
+/* ProfilePhoto Component */
+.profile-photo {
+  width: 10em;
+  height: 10em;
+  position: relative;
+}
+
+.profile-photo img {
+  width: 100%;
+  height: 100%;
+}
+
+.profile-photo,
+.profile-photo img {
+  border-radius: 50%;
+}
