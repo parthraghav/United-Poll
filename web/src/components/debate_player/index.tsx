@@ -1,14 +1,21 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 import { VideoPlayer } from "..";
+import { PrimaryButton } from "../primary_button";
 import { QuestionBox } from "../qa_grid";
 import "./styles.css";
 
 export const DebatePlayer = ({ data }: any) => {
+  const history = useHistory();
   const questionInfo = data.answer[0].question;
   const recommendations = data.suggested;
 
   const handleFirstResponseComplete = () => {};
   const handleSecondResponseComplete = () => {};
+
+  const handleBtnClick = () => {
+    history.push("/add");
+  };
 
   return (
     <div className="debate-player-container">
@@ -25,6 +32,9 @@ export const DebatePlayer = ({ data }: any) => {
               <span>
                 <b>{questionInfo.shares}</b> Shares
               </span>
+            </div>
+            <div>
+              <PrimaryButton label="Ask/Answer" onClick={handleBtnClick} />
             </div>
           </div>
           <VideoPlayer data={data.answer[1]} />

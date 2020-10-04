@@ -2,10 +2,15 @@ import React from "react";
 import "./styles.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faQuestion } from "@fortawesome/free-solid-svg-icons";
+import { useHistory } from "react-router-dom";
 
 export const QuestionBox = ({ question }: any) => {
+  const history = useHistory();
+  const handleClick = () => {
+    history.push("debate/182be0c5cd/cd5072bb1864/cdee4d3d6e");
+  };
   return (
-    <div className="question-box">
+    <div className="question-box" onClick={handleClick}>
       <div className="question-bubble-container">
         <div className="question-bubble">
           <FontAwesomeIcon icon={faQuestion} />
