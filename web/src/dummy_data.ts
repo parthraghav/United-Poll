@@ -237,3 +237,162 @@ export const dummyAnswers = [
     shares: 289,
   },
 ];
+
+const answer1 = {
+  id: "3242142341241",
+  question: {
+    type: "question",
+    name: "What will you do to secure healthcare for american citizens?",
+    views: 3500,
+    shares: 289,
+    answer_count: 5,
+  },
+  question_text: "What will you do to secure healthcare for american citizens?",
+  video: {
+    id: "1894928",
+    link: "https://www.youtube.com/watch?v=viP1WzlYPM0",
+    timestamp: 2512422134,
+    thumbnail:
+      "https://www.denverpost.com/wp-content/uploads/2016/07/gary-johnson-letter.jpg",
+    annotations: [
+      {
+        id: "474634",
+        timestamp: 3,
+        verified: true,
+        author: {
+          id: "452534",
+        },
+        sourceLink: "https://www.youtube.com/watch?v=viP1WzlYPM0",
+        description: "Medicare wasn't repealed in 2010.",
+        type: "False Information Alert",
+        support_count: 300,
+      },
+    ],
+    politician: {
+      id: "15983",
+      name: "Gary Johnson",
+      imageLink:
+        "https://firebasestorage.googleapis.com/v0/b/unitedpoll-71c75.appspot.com/o/candidate_display_pictures%2F0439a5ea7bc5b4c3796de9bef212565a.png?alt=media",
+      party: "Independent Candidate",
+      country: "US",
+      state: "OK",
+      district: "NA",
+      questions: [],
+    },
+    rating: 50293,
+  },
+  politician: {
+    id: "15983",
+    name: "Gary Johnson",
+    imageLink:
+      "https://firebasestorage.googleapis.com/v0/b/unitedpoll-71c75.appspot.com/o/candidate_display_pictures%2F0439a5ea7bc5b4c3796de9bef212565a.png?alt=media",
+    party: "Independent Candidate",
+    country: "US",
+    state: "OK",
+    district: "NA",
+    questions: [],
+  },
+  date: 3123412353,
+  views: 280,
+  shares: 300,
+};
+
+const answer2 = {
+  id: "657457567456",
+  question: {
+    type: "question",
+    name: "What will you do to secure healthcare for american citizens?",
+    views: 3500,
+    shares: 289,
+    answer_count: 5,
+  },
+  question_text: "What will you do to secure healthcare for american citizens?",
+  video: {
+    id: "1894928",
+    link: "https://www.youtube.com/watch?v=Hh_axUT6jc4",
+    timestamp: 2512422134,
+    thumbnail:
+      "https://firebasestorage.googleapis.com/v0/b/unitedpoll-71c75.appspot.com/o/candidate_display_pictures%2F2117bcf76424bd29c8cbfbc167a83b30.png?alt=media",
+    annotations: [
+      {
+        id: "474634",
+        timestamp: 3,
+        verified: true,
+        author: {
+          id: "452534",
+        },
+        sourceLink: "https://www.youtube.com/watch?v=viP1WzlYPM0",
+        description: "Medicare wasn't repealed in 2010.",
+        type: "False Information Alert",
+        support_count: 300,
+      },
+      {
+        id: "474634",
+        timestamp: 10,
+        verified: true,
+        author: {
+          id: "452534",
+        },
+        sourceLink: "https://www.youtube.com/watch?v=viP1WzlYPM0",
+        description: "Medicare wasn't repealed in 2010.",
+        type: "False Information Alert",
+        support_count: 300,
+      },
+    ],
+    politician: {
+      id: "28888",
+      name: "Jim Inhofe",
+      imageLink:
+        "https://firebasestorage.googleapis.com/v0/b/unitedpoll-71c75.appspot.com/o/candidate_display_pictures%2F2117bcf76424bd29c8cbfbc167a83b30.png?alt=media",
+      party: "Republican Candidate",
+      country: "US",
+      state: "OK",
+      district: "NA",
+      questions: [],
+    },
+    rating: 50293,
+  },
+  politician: {
+    id: "28888",
+    name: "Jim Inhofe",
+    imageLink:
+      "https://firebasestorage.googleapis.com/v0/b/unitedpoll-71c75.appspot.com/o/candidate_display_pictures%2F2117bcf76424bd29c8cbfbc167a83b30.png?alt=media",
+    party: "Republican Candidate",
+    country: "US",
+    state: "OK",
+    district: "NA",
+    questions: [],
+  },
+  date: 3123412353,
+  views: 280,
+  shares: 300,
+};
+
+const suggestion1 = {
+  type: "question",
+  name: "What will you do to secure healthcare for american citizens?",
+  views: 3500,
+  shares: 289,
+  answer_count: 5,
+  answers: {
+    "15983": answer1,
+    "28888": answer2,
+  },
+};
+
+const suggestion2 = {
+  type: "question",
+  name:
+    "If elected, what Senate procedural reforms would you propose? Do you think the Senate should eliminate the filibuster? ",
+  views: 3500,
+  shares: 289,
+  answer_count: 5,
+  answers: {
+    "15983": answer1,
+    "28888": answer2,
+  },
+};
+export const dummyDebateData: any = {
+  answer: [answer1, answer2],
+  suggested: [suggestion1, suggestion2, suggestion1, suggestion2, suggestion1],
+};
