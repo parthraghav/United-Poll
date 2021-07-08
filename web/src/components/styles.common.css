@@ -3,6 +3,7 @@
   width: 10em;
   height: 10em;
   position: relative;
+  background-size: cover !important;
 }
 
 .profile-photo img {
@@ -56,5 +57,15 @@
   padding: 1em;
   margin: 1em;
   border-radius: 1em;
+  cursor: pointer;
+}
+
+/* Secondary Button Component */
+
+.secondary-button {
+  background: var(--secondary-background-color);
+  padding: 1em;
+  border-radius: 1em;
+  margin: 0em 0.3em;
   cursor: pointer;
 }
