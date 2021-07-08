@@ -4,10 +4,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faQuestion } from "@fortawesome/free-solid-svg-icons";
 import { useHistory } from "react-router-dom";
 
-export const QuestionBox = ({ question }: any) => {
+export const QuestionBox = ({ question, politicians = [] }: any) => {
   const history = useHistory();
+  let u1 = "any",
+    u2 = "any";
+  if (politicians[0]) u1 = politicians[0];
+  if (politicians[1]) u2 = politicians[1];
   const handleClick = () => {
-    history.push("debate/182be0c5cd/cd5072bb1864/cdee4d3d6e");
+    history.push(`/debate/${u1}/${u2}/${question.id}`);
   };
   return (
     <div className="question-box" onClick={handleClick}>
@@ -17,7 +21,7 @@ export const QuestionBox = ({ question }: any) => {
         </div>
       </div>
       <div className="question-content-container">
-        <span className="question-content">{question.name}</span>
+        <span className="question-content">{question.text}</span>
       </div>
       {/* <div>
         <span>{question.views} Views</span>
@@ -35,7 +39,7 @@ export const QuestionBox = ({ question }: any) => {
 const AnswerBox = ({ answer }: any) => {
   return (
     <div className="answer-box">
-      <img className="thumbnail" src={answer.thumbnail} />
+      <img className="thumbnail" src={answer.thumbnail} alt={answer.id} />
       <div className="answer-info-container">
         <span className="answer-question">{answer.question_text}</span>
         <span className="answer-metrics">
@@ -46,13 +50,18 @@ const AnswerBox = ({ answer }: any) => {
   );
 };
 
-export const QAGrid = ({ data, isProfileView }: any) => {
+export const QAGrid = ({ data, isProfileView, politicians }: any) => {
+  const isQuestion = !isProfileView;
   return (
     <div className="qa-grid-container">
       <div className={"qa-grid " + (isProfileView ? "profile-view" : "")}>
         {data.map((content: any, index: number) => {
-          return content.type == "question" ? (
-            <QuestionBox question={content} key={index} />
+          return isQuestion ? (
+            <QuestionBox
+              question={content}
+              key={index}
+              politicians={politicians}
+            />
           ) : (
             <AnswerBox answer={content} key={index} />
           );
