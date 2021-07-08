@@ -1,9 +1,12 @@
 import { faQuestion } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React from "react";
-import { useParams } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useHistory, useParams } from "react-router-dom";
 import { ProfilePhoto, QAGrid, Screen, ScreenHeader } from "../components";
+import { getPoliticianInfo, Politician } from "../core/politician";
+import { getQuestionsAnsweredByPolitician } from "../core/question";
 import { dummyAnswers, dummyProfileData } from "../dummy_data";
+import { LoadingScreen } from "./loading_screen";
 import "./profile_screen.css";
 
 const ProfilePhotoButtonStack = ({ src }: any) => {
@@ -21,8 +24,8 @@ const ProfilePhotoButtonStack = ({ src }: any) => {
 const ProfileInfo = ({ data }: any) => {
   return (
     <div className="profile-info-container">
-      <h1>{data.name}</h1>
-      <p>{data.party}</p>
+      <h1>{data.full_name}</h1>
+      <p>{data.party_affiliation}</p>
       <hr />
       <div className="profile-info-metrics">
         <span>
@@ -34,8 +37,8 @@ const ProfileInfo = ({ data }: any) => {
           <span>Answers</span>
         </span>
         <span>
-          <b>{data.verified_claim_percent}%</b>
-          <span>Verified Claims</span>
+          <b>{data.click_count}</b>
+          <span>Views</span>
         </span>
       </div>
     </div>
@@ -45,19 +48,43 @@ const ProfileInfo = ({ data }: any) => {
 interface ParamTypes {
   username: string;
 }
+enum CallStatus {
+  Unoccured,
+  Sent,
+  Received,
+}
 
 export const ProfileScreen = (props: any) => {
+  const history = useHistory();
   const { username } = useParams<ParamTypes>();
-  const userData = dummyProfileData[username];
+  const [politician, setPolitician] = useState<any>();
+  const [questions, setQuestions] = useState<Array<any>>([]);
+  const [callStatus, setCallStatus] = useState<CallStatus>(
+    CallStatus.Unoccured
+  );
+  useEffect(() => {
+    (async () => {
+      const _politician = await getPoliticianInfo(username);
+      if (_politician) setPolitician(_politician);
+      else history.goBack();
+    })();
+    (async () => {
+      const _questions = await getQuestionsAnsweredByPolitician(username);
+      console.log(_questions, username);
+      if (_questions) setQuestions(_questions);
+    })();
+  }, []);
 
-  return (
+  return politician ? (
     <Screen>
       <ScreenHeader />
       <div className="profile-area">
-        <ProfilePhotoButtonStack src={userData.imageLink} />
-        <ProfileInfo data={userData} />
-        <QAGrid isProfileView data={dummyAnswers} />
+        <ProfilePhotoButtonStack src={politician.display_picture_link} />
+        <ProfileInfo data={politician} />
+        <QAGrid data={questions} politicians={[politician.id]} />
       </div>
     </Screen>
+  ) : (
+    <LoadingScreen />
   );
 };
