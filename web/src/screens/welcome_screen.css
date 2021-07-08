@@ -1,0 +1,133 @@
+.welcome-dialog {
+  display: flex;
+  flex: 1 1;
+  justify-content: center;
+  align-items: center;
+}
+
+.welcome-screen {
+  background-color: var(--primary-background-color);
+  width: 100vw;
+  min-height: -webkit-fill-available;
+  height: calc(100vh - calc(100vh - 100%));
+  max-height: calc(100vh - 120px);
+}
+
+.primary-dialog-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: calc(100vh - calc(100vh - 100%));
+  position: absolute;
+  pointer-events: none;
+}
+
+.primary-button {
+  flex: 1;
+  background-color: var(--primary-foreground-color);
+  font-weight: bold;
+  font-size: 1.2em;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  padding: 1em;
+  margin: 1em 0em;
+  border-radius: 1em;
+  cursor: pointer;
+}
+
+.primary-input {
+  background-color: var(--tertiary-background-color);
+  -webkit-box-shadow: 0 0 0px 1000px var(--tertiary-background-color) inset;
+  box-shadow: 0 0 0px 1000px var(--tertiary-background-color) inset;
+  color: var(--secondary-text-color);
+  font-size: 1.2em;
+  display: flex;
+  justify-content: space-between;
+  padding: 1em;
+  margin: 1em 0em;
+  border-radius: 1em;
+  border: none;
+  width: 100%;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.primary-input:focus {
+  outline: 0;
+}
+
+.primary-dialog {
+  color: var(--primary-text-color);
+  background-color: var(--secondary-background-color);
+  padding: 2em;
+  border-radius: 1em;
+  width: min(70%, 400px);
+  pointer-events: auto;
+}
+
+.primary-dialog img {
+  width: 6em;
+  padding-bottom: 1em;
+}
+
+.primary-dialog .slogan-container > span {
+  margin: 0;
+  display: block;
+  font-size: 1.6em;
+  font-weight: bold;
+}
+:root {
+  --slogan-font-size: 1.6em;
+}
+
+@media only screen and (min-width: 768px) {
+  :root {
+    --slogan-font-size: 2em;
+  }
+  .primary-dialog .slogan-container > span {
+    font-size: 2em;
+  }
+}
+
+.slogan-container {
+  margin-bottom: 3em;
+}
+
+.countdown {
+  color: var(--primary-foreground-color);
+  display: inline-block;
+}
+.countdown > div {
+  display: inline-block;
+}
+
+.background-animation-container {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  position: absolute;
+}
+
+.photo-container {
+  background-color: var(--secondary-background-color);
+  width: calc(222px / 1.55);
+  height: calc(262px / 1.55);
+  margin: 0.5em;
+  border-radius: 1em;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+.background-animation-overlay {
+  background: black;
+  opacity: 0.74;
+  flex: 1;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+}
