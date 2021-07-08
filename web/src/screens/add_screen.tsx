@@ -1,27 +1,36 @@
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
-import React, { useState } from "react";
-import {
-  Redirect,
-  Route,
-  Switch,
-  useHistory,
-  useLocation,
-  useRouteMatch,
-} from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Route, Switch, useHistory, useRouteMatch } from "react-router-dom";
+import AsyncSelect from "react-select/async";
+
 import YouTube from "react-youtube";
 import { Dialog, Screen, ScreenHeader } from "../components";
 import { PrimaryButton } from "../components/primary_button";
+import { addAnswer } from "../core/answer";
+import { searchPoliticians } from "../core/politician";
+import { askQuestion } from "../core/question";
 import { retrieveVideoId } from "../core/utils";
 import "./add_screen.css";
 
-const QASelector = () => {
+enum CallStatus {
+  Unoccured,
+  Sent,
+  Received,
+}
+
+const QASelector = (props: any) => {
   const history = useHistory();
+  const { currentQuestion } = props.payload;
+
   const handleAskBtnClick = () => {
     history.push("/add/question");
   };
   const handleAnswerBtnClick = () => {
-    history.push("/add/answer");
+    history.push("/add/answer", { currentQuestion });
   };
+  // const handlePoliticianBtnClick = () => {
+  //   history.push("/add/politician");
+  // };
   return (
     <div className="add-dialog">
       <Dialog>
@@ -35,13 +44,15 @@ const QASelector = () => {
             onClick={handleAskBtnClick}
           />
         </div>
-        <div>
-          <PrimaryButton
-            label="Answer a question"
-            icon={faArrowRight}
-            onClick={handleAnswerBtnClick}
-          />
-        </div>
+        {currentQuestion && (
+          <div>
+            <PrimaryButton
+              label="Add an answer"
+              icon={faArrowRight}
+              onClick={handleAnswerBtnClick}
+            />
+          </div>
+        )}
       </Dialog>
     </div>
   );
@@ -49,9 +60,10 @@ const QASelector = () => {
 
 const AskQuestionDailog = () => {
   const history = useHistory();
-  const handleAnswerBtnClick = () => {
-    history.push("/add/answer");
-  };
+  const [questionText, setQuestionText] = useState("");
+  const [callStatus, setCallStatus] = useState(CallStatus.Unoccured);
+
+  const handleTextInputChange = (evt: any) => setQuestionText(evt.target.value);
   return (
     <div className="add-dialog">
       <Dialog>
@@ -59,30 +71,69 @@ const AskQuestionDailog = () => {
           <h1>Ask New Policy Question</h1>
         </div>
         <div>
-          <p>Any other candidate can also answer this question</p>
+          <p>Any candidate can answer this question</p>
         </div>
-        <textarea className="add-text-area" rows={5} />
-        <div>
-          <PrimaryButton
-            label="Post question"
-            icon={faArrowRight}
-            onClick={handleAnswerBtnClick}
-          />
-        </div>
+        <textarea
+          className="add-text-area"
+          rows={5}
+          placeholder={"What's on your mind?"}
+          onChange={handleTextInputChange}
+        />
+        {questionText.length > 0 && questionText.length <= 150 && (
+          <div>
+            <PrimaryButton
+              label={
+                callStatus == CallStatus.Sent
+                  ? "Please wait..."
+                  : "Post question"
+              }
+              icon={faArrowRight}
+              onClick={async () => {
+                setCallStatus(CallStatus.Sent);
+                await askQuestion(questionText);
+                setCallStatus(CallStatus.Received);
+                if (history.length > 1) {
+                  history.goBack();
+                } else {
+                  history.push("/");
+                }
+              }}
+            />
+          </div>
+        )}
       </Dialog>
     </div>
   );
 };
 
-const AddAnswerLinkDialog = () => {
+interface PoliticianSelectOption {
+  value: string;
+  label: string;
+}
+
+const AddAnswerLinkDialog = ({ location }: any) => {
   const [ytLink, setYtLink] = useState("");
+  useState<PoliticianSelectOption>();
+  const [currentPolitician, setCurrentPolitician] = useState({
+    value: undefined,
+    label: undefined,
+  });
   const history = useHistory();
   const handleAnswerLink = () => {
-    history.push("/add/answer/edit", { ytLink });
+    history.push("/add/answer/edit", {
+      ytLink,
+      currentPolitician,
+      currentQuestion: location.state?.currentQuestion,
+    });
   };
   const handleInputChange = (evt: any) => {
     setYtLink(evt.target.value);
   };
+
+  useEffect(() => {
+    if (!location.state?.currentQuestion) history.push("/");
+  }, []);
+
   return (
     <div className="add-dialog">
       <Dialog>
@@ -92,6 +143,18 @@ const AddAnswerLinkDialog = () => {
         <div>
           <p>To the question</p>
         </div>
+        <div className="asyncParent">
+          <AsyncSelect
+            onChange={(value: any) => {
+              setCurrentPolitician(value.value);
+              console.log(value.value);
+            }}
+            loadOptions={async (query: string) =>
+              await searchPoliticians(query)
+            }
+          />
+        </div>
+
         <input
           className="add-input"
           placeholder="Link to YouTube video"
@@ -112,24 +175,32 @@ const AddAnswerLinkDialog = () => {
 
 const EditAnswerLinkDialog = ({ location }: any) => {
   const history = useHistory();
-  const { ytLink } = location.state;
+  const { ytLink, currentPolitician, currentQuestion } = location.state;
   const videoId = retrieveVideoId(ytLink);
   const [player, setPlayer] = useState<any>();
   const [start, setStart] = useState(0);
   const [end, setEnd] = useState(0);
   const handleStartChange = (evt: any) => {
     let playerTime = evt.target.value;
-    player.seekTo(playerTime);
+    player?.seekTo(playerTime);
     setStart(playerTime);
   };
   const handleEndChange = (evt: any) => {
     let playerTime = evt.target.value;
-    player.seekTo(playerTime);
+    player?.seekTo(playerTime);
     setEnd(playerTime);
   };
-  const handleAnswerSubmit = () => {
+  const handleAnswerSubmit = async () => {
+    await addAnswer({
+      qid: currentQuestion,
+      pid: currentPolitician,
+      ytlink: ytLink,
+      start: start,
+      end: end,
+    });
     history.push("/");
   };
+
   return (
     <div className="edit-dialog">
       <Dialog>
@@ -199,7 +270,13 @@ export const AddScreen = (props: any) => {
             component={EditAnswerLinkDialog}
           />
           <Route path={`${path}/answer`} component={AddAnswerLinkDialog} />
-          <Route path={`${path}/`} component={QASelector} />
+          <Route path={`${path}/`}>
+            <QASelector
+              payload={{
+                currentQuestion: props.location.state?.currentQuestion,
+              }}
+            />
+          </Route>
         </Switch>
       </Screen>
     </Screen>

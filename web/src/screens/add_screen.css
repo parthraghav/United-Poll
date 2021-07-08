@@ -40,3 +40,36 @@
   margin: 2em;
   display: block;
 }
+.asyncParent {
+  padding-bottom: 1em;
+}
+.css-2b097c-container {
+  flex: 1 1;
+  border-radius: 1em;
+}
+.css-yk16xz-control {
+  background-color: #373535 !important;
+  border-color: transparent !important;
+}
+.css-1pahdxg-control {
+  background-color: #373535 !important;
+  border-color: transparent !important;
+}
+.css-1uccc91-singleValue {
+  color: white !important;
+}
+.react-select__menu {
+  background-color: #373535 !important;
+  border-color: transparent !important;
+  color: white !important;
+}
+.react-select__menu-list,
+.react-select__option {
+  background-color: #373535 !important;
+  color: white !important;
+}
+
+.css-26l3qy-menu {
+  background-color: #373535 !important;
+  color: white !important;
+}
