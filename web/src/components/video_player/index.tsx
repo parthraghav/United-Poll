@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { ProfilePhoto } from "..";
 import "./styles.css";
 import YouTube from "react-youtube";
+import { retrieveVideoId } from "../../core/utils";
 
 const ReviewOverlay = () => {
   return (
@@ -33,22 +34,19 @@ const Annotation = ({ data }: any) => {
   );
 };
 
-export const VideoPlayer = ({ data }: any) => {
+export const VideoPlayer = ({ answer, politician }: any) => {
   const [playerTime, setPlayerTime] = useState(0);
   const [player, setPlayer] = useState<any>();
   const [ticker, setTicker] = useState<any>();
   let candidateInfo, annotations, start, end, videoId;
 
-  if (data) {
-    candidateInfo = data.politician;
-    annotations = data.video.annotations;
-    start = data.video.start;
-    end = data.video.end;
-    videoId = data.video.ytid;
-  }
+  candidateInfo = politician;
+  annotations = answer?.annotations || [];
+  start = parseInt(answer?.start);
+  end = parseInt(answer?.end);
+  videoId = answer?.ytlink ? retrieveVideoId(answer?.ytlink) : undefined;
 
   const handlePlayerProgress = (time: number) => {
-    console.log(time);
     setPlayerTime(time);
   };
 
@@ -93,7 +91,7 @@ export const VideoPlayer = ({ data }: any) => {
           <div className="video-info-bar">
             <div className="video-profile-photo-container">
               <ProfilePhoto
-                src={candidateInfo.imageLink}
+                src={candidateInfo?.display_picture_link}
                 width="2em"
                 height="2em"
               />
@@ -101,21 +99,21 @@ export const VideoPlayer = ({ data }: any) => {
             <div className="video-profile-info">
               <div>
                 <span className="video-candidate-name">
-                  {candidateInfo.name}
+                  {candidateInfo ? candidateInfo.full_name : ""}
                 </span>
               </div>
               <div>
                 <span className="video-candidate-party">
-                  {candidateInfo.party}
+                  {candidateInfo ? candidateInfo.party_affiliation : ""}
                 </span>
               </div>
             </div>
           </div>
-          <div className="video-player-menu">
+          {/* <div className="video-player-menu">
             <a href="">1</a>
             <a href="">2</a>
             <a href="">3</a>
-          </div>
+          </div> */}
         </div>
         <div className="video-player-embed-area">
           <div className="video-player-embed">
@@ -127,7 +125,7 @@ export const VideoPlayer = ({ data }: any) => {
                 height: "100%",
                 width: "100%",
                 playerVars: {
-                  autoplay: 1,
+                  autoplay: 0,
                   controls: 0,
                   start: start,
                   end: end,
