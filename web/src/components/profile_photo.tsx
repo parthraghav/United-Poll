@@ -7,9 +7,12 @@ export const ProfilePhoto = ({ src, children, ...rest }: any) => {
     <div
       className="profile-photo"
       {...rest}
-      style={isSizeProvided ? { width: rest.width, height: rest.height } : {}}
+      style={{
+        ...(isSizeProvided ? { width: rest.width, height: rest.height } : {}),
+        backgroundColor: "var(--secondary-background-color)",
+        ...(src ? { background: "url(" + src + ")" } : {}),
+      }}
     >
-      <img src={src} />
       {children}
     </div>
   );
