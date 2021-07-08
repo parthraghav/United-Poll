@@ -5,7 +5,10 @@ import "./styles.css";
 import ReactCountryFlag from "react-country-flag";
 import { useHistory, useLocation } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
+import { faChevronLeft, faPlus } from "@fortawesome/free-solid-svg-icons";
+import { PrimaryButton } from "../primary_button";
+import { SecondaryButton } from "../secondary_button";
+import { logout } from "../../core/auth";
 
 export const ScreenHeader = () => {
   const { locale } = useContext(LocaleContext);
@@ -20,15 +23,25 @@ export const ScreenHeader = () => {
   const isNotInitialized = !locale.campaign || !locale.country;
   return (
     <div className="screen-header">
-      <div>
+      <div className="screen-header-left-block">
         {location.pathname != "/" && (
-          <div onClick={handleBackBtnClick}>
-            <FontAwesomeIcon icon={faChevronLeft} />
-            <span className="back-btn-label">Back</span>
-          </div>
+          <SecondaryButton
+            icon={faChevronLeft}
+            onClick={handleBackBtnClick}
+            label="Back"
+          />
         )}
+
+        <SecondaryButton
+          icon={faPlus}
+          onClick={() => history.push("/add/question")}
+          label="Ask Question"
+        />
       </div>
-      {!isNotInitialized && (
+      <div>
+        <SecondaryButton onClick={() => logout()} label="Logout" />
+      </div>
+      {/* {!isNotInitialized && (
         <div onClick={handleLocaleClick}>
           <ReactCountryFlag
             countryCode={locale.country}
@@ -37,7 +50,7 @@ export const ScreenHeader = () => {
           />
           <span className="locale-campaign-name">{locale.campaign}</span>
         </div>
-      )}
+      )} */}
     </div>
   );
 };
