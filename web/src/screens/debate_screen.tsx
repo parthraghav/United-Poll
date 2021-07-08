@@ -6,11 +6,10 @@ import "./debate_screen.css";
 
 export const DebateScreen = (props: any) => {
   let { u1, u2, q }: any = useParams();
-  console.log(u1, u2, q);
   return (
     <Screen>
       <ScreenHeader />
-      <DebatePlayer data={dummyDebateData} />
+      <DebatePlayer q={q} u1={u1} u2={u2} />
     </Screen>
   );
 };
