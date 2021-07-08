@@ -2,10 +2,34 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 import "./styles.css";
 
+function SliderTemplate(candidate: any) {
+  const history = useHistory();
+  const handleClick = (politicianId: string) => {
+    history.push("/u/" + politicianId);
+  };
+
+  return (
+    <div className="slider-container-wrapper">
+      <div
+        className="carousel-el-container"
+        onClick={() => handleClick(candidate.id)}
+        style={{
+          background: "url(" + candidate.display_picture_link + ")",
+        }}
+      >
+        <div className="carousel-el-info-container">
+          <span className="candidate-name">{candidate.full_name}</span>
+          <span className="candidate-party">{candidate.party_affiliation}</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export const CandidateCarousel = ({ data }: any) => {
   const history = useHistory();
-  const handleClick = () => {
-    history.push("/u/15983");
+  const handleClick = (politicianId: string) => {
+    history.push("/u/" + politicianId);
   };
   return (
     <div className="candidate-carousel-container">
@@ -14,12 +38,16 @@ export const CandidateCarousel = ({ data }: any) => {
           <div
             key={index}
             className="carousel-el-container"
-            onClick={handleClick}
+            onClick={() => handleClick(candidate.id)}
+            style={{
+              background: "url(" + candidate.display_picture_link + ")",
+            }}
           >
-            <img src={candidate.imageLink} className="carousel-el-img" />
             <div className="carousel-el-info-container">
-              <span className="candidate-name">{candidate.name}</span>
-              <span className="candidate-party">{candidate.party}</span>
+              <span className="candidate-name">{candidate.full_name}</span>
+              <span className="candidate-party">
+                {candidate.party_affiliation}
+              </span>
             </div>
           </div>
         ))}

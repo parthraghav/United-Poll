@@ -30,6 +30,7 @@
   position: relative;
   background-color: var(--secondary-background-color);
   display: inline-block;
+  background-size: contain !important;
 }
 
 .candidate-carousel .carousel-el-container,
